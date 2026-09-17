@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Catch &amp; Crunch — Fruit Basket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <canvas id="game"></canvas>
+
+    <div id="hud">
+      <div class="pill" id="score-pill">
+        🧺 <span id="score-val">0</span>
+        <span id="combo-tag">x2 COMBO</span>
+      </div>
+      <div class="pill" id="best-pill" title="Personal Best Score">
+        ⭐ <span id="best-val">0</span>
+      </div>
+      <div class="pill" id="lives">
+        <img src="images/heart1.png" class="heart-img" alt="Life">
+        <img src="images/heart1.png" class="heart-img" alt="Life">
+        <img src="images/heart1.png" class="heart-img" alt="Life">
+      </div>
+      <div id="healthy-meter">
+        <div id="healthy-label">🥗 Healthy</div>
+        <div id="healthy-bar-wrap">
+          <div id="healthy-bar-fill"></div>
+        </div>
+      </div>
+      <div id="controls-right">
+        <button class="icon-btn" id="sound-btn" title="Toggle Sound">🔊</button>
+        <button class="icon-btn" id="pause-btn" title="Pause">⏸</button>
+        <button class="icon-btn" id="help-btn" title="How to play">❓</button>
+      </div>
+    </div>
+
+    <div id="hint">Move your mouse or finger to slide the basket →</div>
+
+    <!-- COUNTDOWN -->
+    <div id="countdown-overlay">
+      <div id="countdown-num">3</div>
+    </div>
+
+    <!-- LEVEL UP BANNER -->
+    <div id="level-up-banner">⚡ LEVEL UP!</div>
+
+    <!-- NEW BEST BANNER -->
+    <div id="new-best-banner">🏆 NEW BEST!</div>
+
+    <!-- LOADER -->
+    <div class="overlay show" id="loader-screen">
+      <div class="card" id="loader-card">
+        <div class="loader-fruit-bounce">🧺</div>
+        <h2>Gathering Fresh Harvest...</h2>
+        <p id="loader-status">Preparing orchard &amp; fresh items...</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="loader-bar"></div>
+        </div>
+        <div id="loader-pct">0%</div>
+      </div>
+    </div>
+
+    <!-- START -->
+    <div class="overlay" id="start-screen">
+      <div class="card">
+        <h2>🍉 Catch &amp; Crunch</h2>
+        <p>Catch the healthy food, dodge the junk, and don't let good fruit hit the ground!</p>
+        <button class="btn btn-primary" id="play-btn">▶ Play</button>
+        <div class="tap-hint">or tap anywhere to jump in</div>
+        <button class="btn-ghost" id="rules-from-start">How to play</button>
+      </div>
+    </div>
+
+    <!-- PAUSE -->
+    <div class="overlay" id="pause-overlay">
+      <div class="card">
+        <h2>Paused</h2>
+        <p>Take a breather. Your basket will wait for you.</p>
+        <button class="btn btn-primary" id="resume-btn">▶ Resume</button>
+        <button class="btn btn-secondary" id="restart-from-pause">↻ Restart</button>
+      </div>
+    </div>
+
+    <!-- HELP -->
+    <div class="overlay" id="help-overlay">
+      <div class="card">
+        <h2>How to Play</h2>
+        <ul class="rules-list">
+          <li><span class="rules-emoji">🍎</span> Catch healthy food in the basket → <b>+10 points</b></li>
+          <li><span class="rules-emoji">🍩</span> Catch junk food by accident → <b>−10 points</b></li>
+          <li><span class="rules-emoji">🔥</span> Catch healthy food in a row to build a <b>combo multiplier</b></li>
+          <li><span class="rules-emoji">💔</span> Let healthy food fall to the ground → <b>lose 1 life</b></li>
+          <li><span class="rules-emoji">🎮</span> Move the basket with your mouse, finger, or ← → arrow keys</li>
+          <li><span class="rules-emoji">⚡</span> Things fall faster the longer you survive!</li>
+        </ul>
+        <button class="btn btn-primary" id="close-help">Got it!</button>
+      </div>
+    </div>
+
+    <!-- GAME OVER -->
+    <div class="overlay" id="gameover-overlay">
+      <div class="card">
+        <div id="new-record-badge" class="badge-ribbon hide">🏆 NEW BEST RECORD!</div>
+        <h2>Basket's Full!</h2>
+        <div id="final-label">YOUR SCORE</div>
+        <div id="final-score">0</div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num" id="stat-best">0</div>
+            <div class="stat-lbl">ALL-TIME BEST</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="stat-combo">0</div>
+            <div class="stat-lbl">MAX COMBO</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="stat-healthy">0</div>
+            <div class="stat-lbl">HEALTHY CAUGHT</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="restart-from-over">↻ Play Again</button>
+      </div>
+    </div>
+  </div>
+  <script src="./game.js" defer></script>
+</body>
+
+</html>
